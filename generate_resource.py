@@ -23,7 +23,7 @@ topic_list = [1,2]
 
 for topic in topic_list:
     #create a main heading for this topic
-    this_cell = nbf.v4.new_markdown_cell(source="#"+str(topic)) #this should be a main, level-1 heading.
+    this_cell = nbf.v4.new_markdown_cell(source="# "+str(topic)) #this should be a main, level-1 heading.
     cells.append(this_cell)
     #add this cell to our notebook.
 
