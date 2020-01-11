@@ -9,7 +9,7 @@ resourceDir = './Resource'
 #create an empy notebook that will be our resource page
 resnb = nbf.v4.new_notebook()
 #create a filename. Won't use this until we actually write the notebook to file.
-resource_fname = "Resource.ipynb"
+resource_fname = resourceDir+"/"+"Resource.ipynb"
 
 #variable to determine whether you want context links:
 addContextLinks = True
@@ -51,7 +51,8 @@ for topic in topic_list:
                                         if cell.metadata.resourcetopic == topic:
                                             #first add a cell that links to the original context:
                                             if addContextLinks:
-                                                contextcell = nbf.v4.new_markdown_cell(source="<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>") 
+                                                sourceText = "<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>"
+                                                contextcell = nbf.v4.new_markdown_cell(source=sourceText) 
                                                 cells.append(cell)
                                             cells.append(cell)
                                     else:
