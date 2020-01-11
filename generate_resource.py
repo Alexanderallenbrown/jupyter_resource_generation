@@ -12,7 +12,7 @@ resnb = nbf.v4.new_notebook()
 resource_fname = resourceDir+"/"+"Resource.ipynb"
 
 if os.path.exists(resource_fname):
-    os.rm(resource_fname)
+    os.remove(resource_fname)
 
 #variable to determine whether you want context links:
 addContextLinks = True
