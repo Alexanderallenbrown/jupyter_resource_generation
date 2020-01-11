@@ -11,6 +11,9 @@ resnb = nbf.v4.new_notebook()
 #create a filename. Won't use this until we actually write the notebook to file.
 resource_fname = "Resource.ipynb"
 
+#variable to determine whether you want context links:
+addContextLinks = True
+
 #a variable to hold our cells, one by one.
 cells = []
 
@@ -47,7 +50,9 @@ for topic in topic_list:
                                         #check if this is the topic we want.
                                         if cell.metadata.resourcetopic == topic:
                                             #first add a cell that links to the original context:
-                                            contextcell = nbf.v4.new_markdown_cell(source="<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>") 
+                                            if addContextLinks:
+                                                contextcell = nbf.v4.new_markdown_cell(source="<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>") 
+                                                cells.append(cell)
                                             cells.append(cell)
                                     else:
                                         pass
