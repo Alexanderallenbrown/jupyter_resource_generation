@@ -56,7 +56,7 @@ for topic in topic_list:
                                             if addContextLinks:
                                                 sourceText = "<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>"
                                                 contextcell = nbf.v4.new_markdown_cell(source=sourceText) 
-                                                cells.append(cell)
+                                                cells.append(contextcell)
                                             cells.append(cell)
                                     else:
                                         pass
