@@ -46,6 +46,8 @@ for topic in topic_list:
                                         #print(cell.metadata.resourcetopic)
                                         #check if this is the topic we want.
                                         if cell.metadata.resourcetopic == topic:
+                                            #first add a cell that links to the original context:
+                                            contextcell = nbf.v4.new_markdown_cell(source="<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>") 
                                             cells.append(cell)
                                     else:
                                         pass
