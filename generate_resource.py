@@ -11,7 +11,7 @@ resnb = nbf.v4.new_notebook()
 #create a filename. Won't use this until we actually write the notebook to file.
 resource_fname = resourceDir+"/"+"Resource.ipynb"
 
-if os.exists(resource_fname):
+if os.path.exists(resource_fname):
     os.rm(resource_fname)
 
 #variable to determine whether you want context links:
