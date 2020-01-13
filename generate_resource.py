@@ -52,12 +52,17 @@ for topic in topic_list:
                                         #print(cell.metadata.resourcetopic)
                                         #check if this is the topic we want.
                                         if cell.metadata.resourcetopic == topic:
-                                            #first add a cell that links to the original context:
-                                            if addContextLinks:
-                                                sourceText = "<a href=' " +"."+ dirName+ "/" + fname+ "' > Original Context </a>"
-                                                contextcell = nbf.v4.new_markdown_cell(source=sourceText) 
-                                                cells.append(contextcell)
                                             cells.append(cell)
+                                            #If a markdown cell with a heading has metadata then create context link
+                                            sourceString = cell.source
+                                            if (sourceString[0] == '#' and cell.cell_type == 'markdown' and addContextLinks):
+                                                #strip hashtags and leading space from markdown formatting
+                                                linkString = sourceString[sourceString.find(' ')+1:]
+                                                linkString = '#'+linkString.replace(' ','-')
+                                                #build link path using filename (without suffix) and in page link
+                                                sourcePath = "<a href=' " +"."+ dirName+ "/" + fname+ linkString +"' > Link to Original Context in: " + fname[0:fname.find('.')] +"</a>"
+                                                contextcell = nbf.v4.new_markdown_cell(source=sourcePath) 
+                                                cells.append(contextcell)  
                                     else:
                                         pass
                                         #print("this cell is not a resource cell")
