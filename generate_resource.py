@@ -24,6 +24,9 @@ cells = []
 # can actually be strings or numbers, or mixed.
 topic_list = [1,2]
 
+#whitelist a set of directories
+dir_list = ['Reading_1','Reading_2']
+
 for topic in topic_list:
     #create a main heading for this topic
     this_cell = nbf.v4.new_markdown_cell(source="# "+str(topic)) #this should be a main, level-1 heading.
@@ -35,7 +38,7 @@ for topic in topic_list:
         
         if len(dirName)>len(rootDir) and dirName[len(rootDir)] is not "." and dirName is not resourceDir:
             print('Found directory: %s' % dirName)
-            if not "checkpoint" in dirName:
+            if (not ("checkpoint" in dirName)) and (dirName[len(rootDir):] in dir_list):
                 for fname in fileList:
                     if fname[0] is not '.' and fname is not resource_fname:
                         #if this is a jupyter notebook
