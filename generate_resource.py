@@ -11,6 +11,9 @@ resnb = nbf.v4.new_notebook()
 #create a filename. Won't use this until we actually write the notebook to file.
 resource_fname = resourceDir+"/"+"Resource.ipynb"
 
+if not os.path.exists(resourceDir):
+    os.mkdir(resourceDir)
+    
 if os.path.exists(resource_fname):
     os.remove(resource_fname)
 
@@ -26,7 +29,6 @@ topic_list = [1,2]
 
 #whitelist a set of directories
 dir_list = ['Reading_1','Reading_2']
-
 for topic in topic_list:
     #create a main heading for this topic
     this_cell = nbf.v4.new_markdown_cell(source="# "+str(topic)) #this should be a main, level-1 heading.
@@ -60,11 +62,13 @@ for topic in topic_list:
                                             sourceString = cell.source
                                             if (sourceString[0] == '#' and cell.cell_type == 'markdown' and addContextLinks):
                                                 #strip hashtags and leading space from markdown formatting
-                                                linkString = sourceString[sourceString.find(' ')+1:]
+                                                linkString = sourceString[sourceString.find(' ')+1:].splitlines()[0]
                                                 linkString = '#'+linkString.replace(' ','-')
                                                 #build link path using filename (without suffix) and in page link
                                                 sourcePath = "<a href=' " +"."+ dirName+ "/" + fname+ linkString +"' > Link to Original Context in: " + fname[0:fname.find('.')] +"</a>"
                                                 contextcell = nbf.v4.new_markdown_cell(source=sourcePath) 
+                                                # replace all heading cues with second-level headings.
+                                                sourceString = '## '+sourceString.replace('#','')
                                                 cells.append(contextcell)  
                                     else:
                                         pass
