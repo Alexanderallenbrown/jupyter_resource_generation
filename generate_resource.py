@@ -65,7 +65,7 @@ for topic in topic_list:
                                                 linkString = sourceString[sourceString.find(' ')+1:].splitlines()[0]
                                                 linkString = '#'+linkString.replace(' ','-')
                                                 #build link path using filename (without suffix) and in page link
-                                                sourcePath = "<a href=' " +"."+ dirName+ "/" + fname+ linkString +"' > Link to Original Context in: " + fname[0:fname.find('.')] +"</a>"
+                                                sourcePath = "<a href=\" " +"."+ dirName+ "/" + fname+ linkString +" \" > Link to Original Context in: " + fname[0:fname.find('.')] +"</a>"
                                                 contextcell = nbf.v4.new_markdown_cell(source=sourcePath) 
                                                 # replace all heading cues with second-level headings.
                                                 sourceString = '## '+sourceString.replace('#','')
